@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 
+import org.apache.commons.validator.routines.UrlValidator;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -89,6 +90,11 @@ public class Helper {
 			url = url.substring(0, indx);
 
 		return url;
+	}
+
+	public static boolean urlValidator(String url) {
+		UrlValidator defaultValidator = new UrlValidator();
+		return defaultValidator.isValid(url);
 	}
 
 }
