@@ -38,6 +38,7 @@ public class CrawlerApp {
 		Node root = new Node(url, Optional.empty());
 
 		Optional<Node> result = crawlerApp.pageCrawl(url, Optional.of(root));
+		PrintHelper.print(result);
 	}
 
 	public Optional<Node> pageCrawl(String url, Optional<Node> parent) {
