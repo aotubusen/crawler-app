@@ -1,5 +1,7 @@
 package demo.webcrawler;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -37,8 +39,10 @@ public class CrawlerApp {
 			return;
 		}
 
+		Instant start = Instant.now();
 //		String url = "http://wiprodigital.com";
 		String url = args[0];
+
 		Helper helper = new Helper();
 		String hostname = helper.getHostName(url);
 		CrawlerApp crawlerApp = new CrawlerApp(url, hostname, helper);
@@ -47,6 +51,9 @@ public class CrawlerApp {
 
 		Optional<Node> result = crawlerApp.pageCrawl(url, Optional.of(root));
 		PrintHelper.print(result);
+		Instant finish = Instant.now();
+		long timeElapsed = Duration.between(start, finish).toMillis();
+		System.out.println("CrawlerApp Time Elapsed : " + timeElapsed); // Prints: Time Elapsed: 2501
 	}
 
 	public Optional<Node> pageCrawl(String url, Optional<Node> parent) {
