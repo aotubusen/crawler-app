@@ -51,7 +51,7 @@ public class CrawlerApp {
 		Node root = new Node(url, Optional.empty());
 
 		Optional<Node> result = crawlerApp.pageCrawl(url, Optional.of(root));
-		PrintHelper.print(result);
+		System.out.println(PrintHelper.print(result));
 		Instant finish = Instant.now();
 		long timeElapsed = Duration.between(start, finish).toMillis();
 

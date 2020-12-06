@@ -1,10 +1,10 @@
 package demo.webcrawler;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Node {
 	/**
@@ -13,8 +13,8 @@ public class Node {
 	 * Nodes, with the current Node a parent
 	 * 
 	 */
-	private Map<String, Node> nodes = new HashMap<>();
-	private Collection<String> images = new HashSet<String>();
+	private ConcurrentHashMap<String, Node> nodes = new ConcurrentHashMap<>();
+	private Collection<String> images = Collections.synchronizedCollection(new HashSet<String>());
 
 	private Optional<Node> parent;
 	private String url;
