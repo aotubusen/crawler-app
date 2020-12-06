@@ -1,5 +1,7 @@
 package demo.webcrawler;
 
+import java.util.Optional;
+
 public class CrawlerApp {
 
 	/**
@@ -24,10 +26,14 @@ public class CrawlerApp {
 		Helper helper = new Helper();
 		String hostname = helper.getHostName(url);
 		CrawlerApp crawlerApp = new CrawlerApp(url, hostname);
-		crawlerApp.crawl();
+
+		Node root = new Node(url, Optional.empty());
+
+		Optional<Node> result = crawlerApp.pageCrawl(url, Optional.of(root));
 	}
 
-	public void crawl() {
+	public Optional<Node> pageCrawl(String url, Optional<Node> parent) {
 
+		return parent;
 	}
 }
