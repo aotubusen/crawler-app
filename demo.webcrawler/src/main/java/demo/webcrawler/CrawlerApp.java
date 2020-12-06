@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.jsoup.nodes.Document;
 
@@ -53,7 +54,9 @@ public class CrawlerApp {
 		PrintHelper.print(result);
 		Instant finish = Instant.now();
 		long timeElapsed = Duration.between(start, finish).toMillis();
-		System.out.println("CrawlerApp Time Elapsed : " + timeElapsed); // Prints: Time Elapsed: 2501
+		System.out.println(String.format("CrawlerApp Time Elapsed : %s (approx. %s secs.) ", timeElapsed,
+				TimeUnit.MILLISECONDS.toSeconds(timeElapsed))); // Prints: Time Elapsed: 2501
+//		TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
 	}
 
 	public Optional<Node> pageCrawl(String url, Optional<Node> parent) {
