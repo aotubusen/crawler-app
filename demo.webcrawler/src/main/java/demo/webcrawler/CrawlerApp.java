@@ -30,7 +30,15 @@ public class CrawlerApp {
 
 	public static void main(String[] args) {
 
-		String url = "http://wiprodigital.com";
+		if (args.length != 1 || !Helper.urlValidator(args[0])) {
+			System.out.println(" ******************************************");
+			System.out.println("       Please provide a valid URL");
+			System.out.println(" ******************************************");
+			return;
+		}
+
+//		String url = "http://wiprodigital.com";
+		String url = args[0];
 		Helper helper = new Helper();
 		String hostname = helper.getHostName(url);
 		CrawlerApp crawlerApp = new CrawlerApp(url, hostname, helper);
