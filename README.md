@@ -9,6 +9,9 @@ How to build and run
 - go to location {yourfolder}\crawler-app-main\demo.webcrawler
 - run command 'gradlew run --args=http://wiprodigital.com'
 - change url in above command as desired.
+
+- run 'gradlew run --args=http://wiprodigital.com > somefile.log', to save output to file
+
 =====================================================================================
 
 
@@ -17,8 +20,9 @@ My implenetation fetches the links on each page concurently and recursively, to 
 
 My implemetation crawls 288 pages in about 35 seconds.
 
-Given more time 
-- I would have investigated an implementation that avoids opening a new connection for ever new page fetch.
+Given more time, I would have ...
+- implemented my solution in a way that the Crawler app is not coupled to the Jsoup library, and not coupled to a single print implementation.
+- investigated an implementation that avoids opening a new connection for ever new page fetch.
 - provided better URL validation
-- implemented my solution in a way that the Crawler app is not coupled to the Jsoup library
 - provided more test coverage.
+- provided better handling of HttpConnection errors from JSoup
