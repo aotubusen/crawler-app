@@ -16,6 +16,7 @@ I am using JSoup (https://jsoup.org/), as convinient java HTML parser.
 My implenetation fetches the links on each page concurently and recursively, to build the site map into an internal hashmap 
 
 My implemetation crawls 288 pages in about 35 seconds.
+
 Given more time 
 - I would have investigated an implementation that avoids opening a new connection for ever new page fetch.
 - provided better URL validation
