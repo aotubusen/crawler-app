@@ -1,6 +1,7 @@
 package demo.webcrawler;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.times;
@@ -142,6 +143,20 @@ public class CrawlerAppTest {
 		expected = "wiprodigital.com/get-in-touch";
 		url = "wiprodigital.com/get-in-touch#wddi-contact";
 		assertEquals(hepler_.stripUrl(url), expected);
+
+	}
+
+	@Test
+	public void testCheckURLValid() {
+
+		assertTrue(Helper.urlValidator("https://wiprodigital.com/what-we-do/#work-three-circles-row"));
+
+	}
+
+	@Test
+	public void testCheckInvalidURL() {
+
+		assertFalse(Helper.urlValidator("https://wiprodigital"));
 
 	}
 }

@@ -9,8 +9,12 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id 'application'
 }
 
+application {
+    mainClassName = "demo.webcrawler.CrawlerApp"
+}
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
