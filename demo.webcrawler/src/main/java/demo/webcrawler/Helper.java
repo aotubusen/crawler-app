@@ -41,14 +41,16 @@ public class Helper {
 		if (doc.isEmpty())
 			return Collections.emptySet();
 
-		Collection<String> list = new HashSet<>();
+		Collection<String> urls = new HashSet<>();
 
 		Elements links = doc.get().select("a[href]");
 		for (Element link : links) {
 			String url = link.attr("abs:href");
-			list.add(url);
+			//
+			url = stripUrl(url);
+			urls.add(url);
 		}
-		return list;
+		return urls;
 	}
 
 	public Collection<String> handleMedia(Optional<Document> doc) {
@@ -69,4 +71,24 @@ public class Helper {
 		}
 		return list;
 	}
+
+	public String stripUrl(String url) {
+		// strip URL from '/?' or '/#'
+		// do not call page with parameter or page bookmarks
+		int indx = url.indexOf("?");
+		if (indx > 0)
+			url = url.substring(0, indx);
+
+		indx = url.indexOf("#");
+		if (indx > 0)
+			url = url.substring(0, indx);
+
+		indx = url.lastIndexOf("/");
+		int length = url.length();
+		if (indx > 0 && indx == length - 1)
+			url = url.substring(0, indx);
+
+		return url;
+	}
+
 }

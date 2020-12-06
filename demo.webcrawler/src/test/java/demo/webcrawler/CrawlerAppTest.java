@@ -118,4 +118,30 @@ public class CrawlerAppTest {
 		verify(helper, times(0)).handleMedia(Mockito.any());
 
 	}
+
+	@Test
+	public void testStripURLValid() {
+
+		Helper hepler_ = new Helper();
+		String expected = "https://wiprodigital.com/what-we-do";
+		String url = "https://wiprodigital.com/what-we-do/";
+		assertEquals(hepler_.stripUrl(url), expected);
+
+		expected = "https://wiprodigital.com/what-we-do";
+		url = "https://wiprodigital.com/what-we-do";
+		assertEquals(hepler_.stripUrl(url), expected);
+
+		expected = "https://wiprodigital.com/what-we-do";
+		url = "https://wiprodigital.com/what-we-do/#work-three-circles-row";
+		assertEquals(hepler_.stripUrl(url), expected);
+
+		expected = "https://wiprodigital.com/what-we-do";
+		url = "https://wiprodigital.com/what-we-do/?test=work-three-circles-row";
+		assertEquals(hepler_.stripUrl(url), expected);
+
+		expected = "wiprodigital.com/get-in-touch";
+		url = "wiprodigital.com/get-in-touch#wddi-contact";
+		assertEquals(hepler_.stripUrl(url), expected);
+
+	}
 }
