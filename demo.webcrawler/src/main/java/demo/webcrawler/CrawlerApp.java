@@ -54,8 +54,12 @@ public class CrawlerApp {
 		PrintHelper.print(result);
 		Instant finish = Instant.now();
 		long timeElapsed = Duration.between(start, finish).toMillis();
+
+		System.out.println("\n\n-----------------------------------------------------------------------");
 		System.out.println(String.format("CrawlerApp Time Elapsed : %s (approx. %s secs.) ", timeElapsed,
 				TimeUnit.MILLISECONDS.toSeconds(timeElapsed))); // Prints: Time Elapsed: 2501
+		System.out.println(String.format("Fetched  %s pages.", crawlerApp.linksFetchedCount()));
+		System.out.println("-----------------------------------------------------------------------");
 //		TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
 	}
 
@@ -82,5 +86,9 @@ public class CrawlerApp {
 		parent.get().addNodes(urls);
 		parent.get().addImages(images);
 		return parent;
+	}
+
+	private int linksFetchedCount() {
+		return fetchedUrls.size();
 	}
 }
