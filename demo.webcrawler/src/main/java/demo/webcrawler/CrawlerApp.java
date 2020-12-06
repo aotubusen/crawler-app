@@ -47,6 +47,8 @@ public class CrawlerApp {
 		if (url.contains(hostname)) {
 			Optional<Document> doc = helper.fetchLink(url);
 			parent = handleDoc(doc, parent);
+
+			parent.get().getNodes().parallelStream().forEach(n -> pageCrawl(n.getUrl(), Optional.of(n)));
 		}
 		return parent;
 	}
