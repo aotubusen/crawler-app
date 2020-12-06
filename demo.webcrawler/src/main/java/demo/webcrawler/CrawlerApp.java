@@ -1,6 +1,8 @@
 package demo.webcrawler;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 
 import org.jsoup.nodes.Document;
@@ -17,8 +19,8 @@ public class CrawlerApp {
 
 	private String url;
 	private String hostname;
-
 	private Helper helper;
+	private Collection<String> fetchedUrls = Collections.synchronizedCollection(new HashSet<String>());
 
 	public CrawlerApp(String url, String hostname, Helper helper) {
 		this.url = url;
@@ -44,8 +46,10 @@ public class CrawlerApp {
 			return parent;
 
 		// Only fetch page if url contains hostName,,Needs better verification
-		if (url.contains(hostname)) {
+		if (url.contains(hostname) && !fetchedUrls.contains(url)) {
 			Optional<Document> doc = helper.fetchLink(url);
+			fetchedUrls.add(url);
+
 			parent = handleDoc(doc, parent);
 
 			parent.get().getNodes().parallelStream().forEach(n -> pageCrawl(n.getUrl(), Optional.of(n)));
