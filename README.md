@@ -15,8 +15,8 @@ How to build and run
 =====================================================================================
 
 
-I am using JSoup (https://jsoup.org/), as convinient java HTML parser.
-My implenetation fetches the links on each page concurently and recursively, to build the site map into an internal hashmap 
+I am using JSoup (https://jsoup.org/), as a convinient java HTML parser.
+My implenetation fetches the links on each page concurrently and recursively, to build the site map into an internal hashmap 
 
 My implemetation crawls 288 pages in about 35 seconds.
 
